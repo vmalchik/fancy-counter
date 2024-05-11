@@ -1,10 +1,11 @@
 import CountButton from "./CountButton";
 
-export default function ButtonContainer({ setCount }) {
+// Note: Undesirable prop drilling. This component should be refactored to use React Context or Redux
+export default function ButtonContainer({ locked, setCount }) {
   return (
     <div className="button-container">
-      <CountButton setCount={setCount} type="decrement" />
-      <CountButton setCount={setCount} type="increment" />
+      <CountButton locked={locked} setCount={setCount} type="decrement" />
+      <CountButton locked={locked} setCount={setCount} type="increment" />
     </div>
   );
 }
