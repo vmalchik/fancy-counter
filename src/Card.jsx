@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Count from "./Count";
 import ButtonsContainer from "./ButtonContainer";
 import ResetButton from "./ResetButton";
 import Title from "./Title";
+
+const MAX_FREE_COUNT = 5;
 
 export default function Card() {
   // When state changes (e.g. count is updated) then all child components of Card
@@ -10,7 +12,19 @@ export default function Card() {
   const [count, setCount] = useState(0);
 
   // No need to use useState for locked as it is derived from count
-  const locked = count === 5;
+  const locked = count === MAX_FREE_COUNT;
+
+  // on mount enable keyboard events
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.code === "Space") {
+        setCount((prev) => Math.min(prev + 1, MAX_FREE_COUNT));
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    // cleanup event listener on unmount
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   return (
     <div className={`card ${locked && "card--limit"}`}>
