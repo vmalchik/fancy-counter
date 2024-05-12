@@ -28,7 +28,7 @@ export default function Card() {
   }, []);
 
   return (
-    <div className={`card ${locked && "card--limit"}`}>
+    <div className={`card ${locked ? "card--limit" : ""}`}>
       <Title locked={locked} />
       <Count count={count} />
       <ResetButton setCount={setCount} />
