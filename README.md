@@ -21,8 +21,8 @@ To get the project running on your local machine, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/fancy-counter-app.git
-   cd fancy-counter-app
+   git clone https://github.com/vmalchik/fancy-counter.git
+   cd fancy-counter
    ```
 2. Install the dependencies:
    ```bash
